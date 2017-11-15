@@ -6,7 +6,7 @@ import generic.IShortLinkedList;
 public class ComposableShortLinkedList<T> implements IComposableShortLinkedList<T> {
 
     @Override
-    public IShortLinkedList<T> map(IMappable<T> map) {
+    public IShortLinkedList<T> map(IMappable<T> map ) {
         return null;
     }
 
@@ -22,7 +22,7 @@ public class ComposableShortLinkedList<T> implements IComposableShortLinkedList<
 
     @Override
     public T tail() {
-        return null;
+          return null;
     }
 
     @Override
