@@ -20,6 +20,7 @@ public class ShortLinkedList<T> implements IShortLinkedList<T> {
 
     public void setSize(short size) {
         this.size = size;
+
     }
 
 
