@@ -61,7 +61,7 @@ public class ComposableShortLinkedList<T> implements IComposableShortLinkedList<
     }
 
     @Override
-    public T size() {
-        return null;
+    public short size() {
+        return 0;
     }
 }

@@ -11,5 +11,5 @@ public interface IShortLinkedList<T> {
     void remove(T t);
     T first();
     T last();
-    T size();
+    short size();
 }
