@@ -13,8 +13,9 @@ public class ShortLinkedListTest {
     @Test(expected = NullPointerException.class)
     public void testInitialization() {
         ShortLinkedList<Integer> shortLinkedList = new ShortLinkedList<>();
-        Integer integer = shortLinkedList.root();
-        Assert.assertNull(integer);
+        Assert.assertNull(shortLinkedList.first());
+        Assert.assertNull(shortLinkedList.last());
+        Assert.assertEquals(0, shortLinkedList.size());
     }
 
     @Test
@@ -147,5 +148,93 @@ public class ShortLinkedListTest {
         Assert.assertEquals((long)shortLinkedList.size(), 6);
     }
 
-    
+
+    @Test
+    public void testInsertWithLargeIndex(){
+        expectedException.expectMessage(ShortLinkedListExceptions.EXP_INDEX_LARGE);
+        ShortLinkedList<Integer> integerShortLinkedList = new ShortLinkedList<>();
+        integerShortLinkedList.add(4);
+        integerShortLinkedList.insert((short)1,5);
+    }
+
+    @Test()
+    public void testInsertWithSmallIndex() {
+        expectedException.expectMessage(ShortLinkedListExceptions.EXP_INDEX_NEGATIVE);
+        ShortLinkedList<Integer> integerShortLinkedList = new ShortLinkedList<>();
+        integerShortLinkedList.insert((short)-1,5);
+    }
+
+    //    INSERT
+    @Test()
+    public void testInsertAtIndex0() {
+        ShortLinkedList<Integer> integerShortLinkedList = new ShortLinkedList<>();
+        integerShortLinkedList.add(54);
+        integerShortLinkedList.add(3);
+        integerShortLinkedList.add(4);
+        integerShortLinkedList.add(76);
+
+        short index = 0;
+        int value = 19;
+
+
+
+
+        integerShortLinkedList.insert(index,value);
+        Assert.assertEquals(value, (long)integerShortLinkedList.get(index));
+        Assert.assertEquals(5, integerShortLinkedList.size());
+
+    }
+
+    @Test()
+    public void testInsertAtIndex1() {
+        ShortLinkedList<Integer> integerShortLinkedList = new ShortLinkedList<>();
+        integerShortLinkedList.add(54);
+        integerShortLinkedList.add(64);
+        integerShortLinkedList.add(31);
+        integerShortLinkedList.add(76);
+        integerShortLinkedList.add(64);
+        integerShortLinkedList.add(4);
+        integerShortLinkedList.add(76);
+
+        short index = 1;
+        int value = 19;
+        integerShortLinkedList.insert(index,value);
+        Assert.assertEquals(value, (long)integerShortLinkedList.get(index));
+        Assert.assertEquals(8, integerShortLinkedList.size());
+
+    }
+
+    @Test()
+    public void testInsertAtIndexAnyMiddle() {
+        ShortLinkedList<Integer> integerShortLinkedList = new ShortLinkedList<>();
+        integerShortLinkedList.add(54);
+        integerShortLinkedList.add(3876);
+        integerShortLinkedList.add(4);
+        integerShortLinkedList.add(76);
+
+        short index = 2;
+        int value = 19;
+        integerShortLinkedList.insert(index,value);
+
+        Assert.assertEquals(value, (long)integerShortLinkedList.get(index));
+        Assert.assertEquals(5, integerShortLinkedList.size());
+    }
+
+    @Test()
+    public void testInsertAtIndexLast() {
+        ShortLinkedList<Integer> integerShortLinkedList = new ShortLinkedList<>();
+        integerShortLinkedList.add(-1);
+        integerShortLinkedList.add(34);
+        integerShortLinkedList.add(454);
+        integerShortLinkedList.add(76);
+        integerShortLinkedList.add(454);
+
+        short index = 4;
+        int value = 19;
+
+        integerShortLinkedList.insert(index,value);
+
+        Assert.assertEquals(value, (long)integerShortLinkedList.get(index));
+        Assert.assertEquals(6, integerShortLinkedList.size());
+    }
 }

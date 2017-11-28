@@ -9,20 +9,9 @@ public class ComposableShortLinkedList<T> implements IComposableShortLinkedList<
     public IShortLinkedList<T> map(IMappable<T> map ) {
         return null;
     }
-
-    @Override
-    public T root() {
-        return null;
-    }
-
     @Override
     public T get(short index) {
         return null;
-    }
-
-    @Override
-    public T tail() {
-          return null;
     }
 
     @Override

@@ -18,17 +18,6 @@ public class ShortLinkedList<T> implements IShortLinkedList<T> {
         return size;
     }
 
-    public void setSize(short size) {
-        this.size = size;
-
-    }
-
-
-    @Override
-    public T root() {
-        return root.getValue();
-    }
-
     @Override
     public T get(short index) {
         if(index < 0) {
@@ -51,11 +40,6 @@ public class ShortLinkedList<T> implements IShortLinkedList<T> {
             }
             return null;
         }
-    }
-
-    @Override
-    public T tail() {
-        return tail.getValue();
     }
 
     @Override
@@ -123,9 +107,51 @@ public class ShortLinkedList<T> implements IShortLinkedList<T> {
         size++;
     }
 
+    //Root is always the item at index 0. It doesn't point to the item at index 0, it is the item at index 0;
+
+    /**
+     * Inserts an item at the specified index. Given an array [1,2,3,4,5,6] an a request to insert item 19 at index 2. The new array
+     * will become [1,2,19,3,4,5,6]. This is different than the @add(index, item) as it always adds to the index ahead of what you specified.
+     * E.g. Given the same array and an add(2,19) request. The new array will be [1,2,3,19,4,5,6].
+     * @param index
+     * @param t
+     */
     @Override
     public void insert(short index, T t) {
+        if(index >= size) {
+            throw new IndexOutOfBoundsException(ShortLinkedListExceptions.EXP_INDEX_LARGE);
+        }else if(index < 0) {
+            throw new IndexOutOfBoundsException(ShortLinkedListExceptions.EXP_INDEX_NEGATIVE);
+        }
 
+        Node prev;
+        Node next;
+        Node iterator;
+        Node<T> insertedItem = new Node<>(t, null);
+
+        if(index == 0) {
+            Node savedRef = root;
+            root = insertedItem;
+            root.setNext(savedRef);
+        }else if(index == 1) {
+            prev = root.getNext();
+            root.setNext(insertedItem);
+            insertedItem.setNext(prev);
+        }
+        else {
+            iterator = root;
+            for (int i = 0; i < index; i++) {
+                if(i == (index - 1)) {
+                    prev = iterator;
+                    next = iterator.getNext();
+                    prev.setNext(insertedItem);
+                    insertedItem.setNext(next);
+                    break;
+                }
+                iterator = iterator.getNext();
+            }
+        }
+        size++;
     }
 
     @Override
